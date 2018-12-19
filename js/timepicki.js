@@ -102,7 +102,7 @@
             var inputs             = ele_par.find('input');
 
             $('.reset_time').on("click", function(event) {
-                setValue(ele, "");
+                ele.val("");
                 close_timepicki();
             });
 
@@ -184,12 +184,12 @@
                                 Math.min(Math.max(parseInt(input.val()), 0), 23); // for 24 hours date picker.
 
                             // assign number.
-                            setValue(input, hours);
+                            input.val(hours);
 
                         } else if (!isEmpty) {
                             // else if the number is invalid and not empty
                             // assign the lastValue
-                            setValue(input, lastValue);
+                            input.val(lastValue);
 
                         }
 
@@ -206,12 +206,12 @@
                             var minutes = Math.min(Math.max(parseInt(input.val()), 0), 59);
 
                             // assign number.
-                            setValue(input, minutes);
+                            input.val(minutes);
 
                         } else if (!isEmpty) {
                             // else if the number is invalid and not empty
                             // assign the lastValue
-                            setValue(input, lastValue);
+                            input.val(lastValue);
 
                         }
 
@@ -344,9 +344,9 @@
                     if (settings.show_meridian) {
                         ele.attr('data-timepicki-meri', meri);
                         // set the formatted value
-                        setValue(ele, settings.format_output(tim, mini, meri));
+                        ele.val(settings.format_output(tim, mini, meri));
                     } else {
-                        setValue(ele, settings.format_output(tim, mini));
+                        ele.val(settings.format_output(tim, mini));
                     }
                 }
 
@@ -422,20 +422,20 @@
                 }
 
                 if (ti < 10) {
-                    setValue(ele_next.find(".ti_tx input"), "0" + ti);
+                    ele_next.find(".ti_tx input").val("0" + ti);
                 } else {
-                    setValue(ele_next.find(".ti_tx input"), ti);
+                    ele_next.find(".ti_tx input").val(ti);
                 }
                 if (mi < 10) {
-                    setValue(ele_next.find(".mi_tx input"), "0" + mi);
+                    ele_next.find(".mi_tx input").val("0" + mi);
                 } else {
-                    setValue(ele_next.find(".mi_tx input"), mi);
+                    ele_next.find(".mi_tx input").val(mi);
                 }
                 if (settings.show_meridian) {
                     if (mer < 10) {
-                        setValue(ele_next.find(".mer_tx input"), "0" + mer);
+                        ele_next.find(".mer_tx input").val("0" + mer);
                     } else {
-                        setValue(ele_next.find(".mer_tx input"), mer);
+                        ele_next.find(".mer_tx input").val(mer);
                     }
                 }
             }
@@ -454,13 +454,13 @@
                         } else {
                             min_value = String(min_value);
                         }
-                        setValue(ele_next.find("." + cur_cli + " .ti_tx input"), min_value);
+                        ele_next.find("." + cur_cli + " .ti_tx input").val(min_value);
                     } else {
                         cur_time = cur_time + step_size;
                         if (cur_time < 10) {
                             cur_time = "0" + cur_time;
                         }
-                        setValue(ele_next.find("." + cur_cli + " .ti_tx input"), cur_time);
+                        ele_next.find("." + cur_cli + " .ti_tx input").val(cur_time);
                     }
                 } else if ((cur_ele && cur_ele.hasClass('action-prev')) || direction === 'prev') {
                     var minValue = Number(settings.min_hour_value)
@@ -471,13 +471,13 @@
                         } else {
                             max_value = String(max_value);
                         }
-                        setValue(ele_next.find("." + cur_cli + " .ti_tx input"), max_value);
+                        ele_next.find("." + cur_cli + " .ti_tx input").val(max_value);
                     } else {
                         cur_time = cur_time - step_size;
                         if (cur_time < 10) {
                             cur_time = "0" + cur_time;
                         }
-                        setValue(ele_next.find("." + cur_cli + " .ti_tx input"), cur_time);
+                        ele_next.find("." + cur_cli + " .ti_tx input").val(cur_time);
                     }
                 }
             }
@@ -490,30 +490,30 @@
                 var step_size = Number(settings.step_size_minutes);
                 if ((cur_ele && cur_ele.hasClass('action-next')) || direction === 'next') {
                     if (cur_mins + step_size > ele_en) {
-                        setValue(ele_next.find("." + cur_cli + " .mi_tx input"), "00");
+                        ele_next.find("." + cur_cli + " .mi_tx input").val("00");
                         if (settings.overflow_minutes) {
                             change_time(null, 'next');
                         }
                     } else {
                         cur_mins = cur_mins + step_size;
                         if (cur_mins < 10) {
-                            setValue(ele_next.find("." + cur_cli + " .mi_tx input"), "0" + cur_mins);
+                            ele_next.find("." + cur_cli + " .mi_tx input").val("0" + cur_mins);
                         } else {
-                            setValue(ele_next.find("." + cur_cli + " .mi_tx input"), cur_mins);
+                            ele_next.find("." + cur_cli + " .mi_tx input").val(cur_mins);
                         }
                     }
                 } else if ((cur_ele && cur_ele.hasClass('action-prev')) || direction === 'prev') {
                     if (cur_mins - step_size <= -1) {
-                        setValue(ele_next.find("." + cur_cli + " .mi_tx input"), ele_en + 1 - step_size);
+                        ele_next.find("." + cur_cli + " .mi_tx input").val(ele_en + 1 - step_size);
                         if (settings.overflow_minutes) {
                             change_time(null, 'prev');
                         }
                     } else {
                         cur_mins = cur_mins - step_size;
                         if (cur_mins < 10) {
-                            setValue(ele_next.find("." + cur_cli + " .mi_tx input"), "0" + cur_mins);
+                            ele_next.find("." + cur_cli + " .mi_tx input").val("0" + cur_mins);
                         } else {
-                            setValue(ele_next.find("." + cur_cli + " .mi_tx input"), cur_mins);
+                            ele_next.find("." + cur_cli + " .mi_tx input").val(cur_mins);
                         }
                     }
                 }
@@ -527,22 +527,17 @@
                     cur_mer = ele_next.find("." + cur_cli + " .mer_tx input").val();
                 if ((cur_ele && cur_ele.hasClass('action-next')) || direction === 'next') {
                     if (cur_mer == "AM") {
-                        setValue(ele_next.find("." + cur_cli + " .mer_tx input"), "PM");
+                        ele_next.find("." + cur_cli + " .mer_tx input").val("PM");
                     } else {
-                        setValue(ele_next.find("." + cur_cli + " .mer_tx input"), "AM");
+                        ele_next.find("." + cur_cli + " .mer_tx input").val("AM");
                     }
                 } else if ((cur_ele && cur_ele.hasClass('action-prev')) || direction === 'prev') {
                     if (cur_mer == "AM") {
-                        setValue(ele_next.find("." + cur_cli + " .mer_tx input"), "PM");
+                        ele_next.find("." + cur_cli + " .mer_tx input").val("PM");
                     } else {
-                        setValue(ele_next.find("." + cur_cli + " .mer_tx input"), "AM");
+                        ele_next.find("." + cur_cli + " .mer_tx input").val("AM");
                     }
                 }
-            }
-
-            function setValue(ele, value) {
-                ele.val(value);
-                ele.trigger('tp-timechanged');
             }
 
             // handle clicking on the arrow icons
