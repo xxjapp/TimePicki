@@ -6,6 +6,7 @@ Timepicki - free Time picker jquery plugin, it is simple and clean timepicker so
 Reason to make : I have tried to search set timepicker for one of the form page, this type of timepicker only on boostrap framework as bootsstrap-timepicker, but if we use that plugin then also need to use bootstrap css and js, so that will conflict
 our own code css and some time make js conflict issue, that why i make it simple, so you can use easily with jquery library 1.x and 2.x too, if you find any issue or need any additional features in this plugin , kindly reach me on my mail(I mentioned on bottom of the page)
 
+This fork triggers event `tp-timechanged` when user changes time value.
 
 How to use
 ==========
@@ -26,7 +27,7 @@ How to use
 - 3)put html code in body tag like below:
 ```html
 <input type="text" name="timepicker" class="time_element"/>
-```        
+```
 
 - 4)also put css fiel
 ```html
@@ -55,6 +56,6 @@ Add your Website
 ================
 
 if you are using our plugin, we will add in here as plugin users with website link,
-so kindly send me your website link to this MailId : senthil2rajan@gmail.com 
+so kindly send me your website link to this MailId : senthil2rajan@gmail.com
 
 Thanks
