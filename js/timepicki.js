@@ -348,6 +348,8 @@
                     } else {
                         ele.val(settings.format_output(tim, mini));
                     }
+
+                    ele.trigger('tp-timechanged');
                 }
 
                 //Call user on_change callback function if set
